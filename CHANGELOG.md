@@ -8,6 +8,25 @@ All notable changes to this project are documented here. The format follows
 
 Nothing yet.
 
+## [1.0.1] — 2026-11-03
+
+### Added
+
+- Professional release documentation: `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`,
+  `SECURITY.md`, `SUPPORT.md`, `ROADMAP.md`, `CITATION.cff`, `.editorconfig`.
+- `docs/ARCHITECTURE.md`, `docs/DESIGN.md`, `docs/TESTING.md`,
+  `docs/DEPLOYMENT.md`, `docs/ACCESSIBILITY.md`, `docs/RELEASE.md`.
+- Issue forms, pull request template, `CODEOWNERS`, and a GitHub Actions
+  verification workflow.
+- `scripts/check.mjs`: dependency-free checks for files, DOM ids, tab/panel
+  consistency, local assets, EN/TH parity, i18n coverage, semantic colours,
+  runtime network calls, Markdown links and `state.json`.
+
+### Changed
+
+- README now includes a documentation index, quality gates and the release
+  version.
+
 ## [1.0.0] — 2026-11-03
 
 ### Added
@@ -35,5 +54,6 @@ Nothing yet.
 - No runtime network requests, third-party scripts, cookies or analytics.
 - Progress never leaves the browser unless the learner exports it.
 
-[Unreleased]: https://github.com/somphol/khan-trig-unit3-non-right-triangles-studio/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/somphol/khan-trig-unit3-non-right-triangles-studio/compare/v1.0.1...HEAD
+[1.0.1]: https://github.com/somphol/khan-trig-unit3-non-right-triangles-studio/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/somphol/khan-trig-unit3-non-right-triangles-studio/releases/tag/v1.0.0

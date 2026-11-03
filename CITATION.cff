@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+message: "If you use this studio in teaching, outreach or research, please cite it as below."
+type: software
+title: "Khan Trig Companion: Unit 3 Non-Right Triangles Studio"
+version: 1.0.1
+date-released: 2026-11-03
+authors:
+  - family-names: Boonjing
+    given-names: Somphol
+license: MIT
+repository-code: "https://github.com/somphol/khan-trig-unit3-non-right-triangles-studio"
+url: "https://somphol.github.io/khan-trig-unit3-non-right-triangles-studio/"
+abstract: >-
+  A dependency-free, bilingual (English and Thai) interactive companion for
+  Khan Academy Trigonometry Unit 3. Three canvas studios cover the Law of Sines
+  and the ambiguous SSA case, a Law of Cosines SAS/SSS solver with live
+  algebraic substitution, and surveying or navigation practice with animated
+  map solutions, streaks and badges. The site runs entirely in the browser and
+  stores progress locally.
+keywords:
+  - trigonometry
+  - law of sines
+  - law of cosines
+  - ambiguous case
+  - SSA
+  - surveying
+  - triangulation
+  - mathematics education
+  - interactive learning
+  - bilingual education
+  - Thai
+  - HTML5 Canvas

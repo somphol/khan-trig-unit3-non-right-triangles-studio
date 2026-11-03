@@ -2,7 +2,7 @@
 
 An interactive, bilingual companion for **Khan Academy Trigonometry, Unit 3: Non-Right Triangles & Geometry**. Students explore why SSA is ambiguous, solve SAS and SSS triangles with the Law of Cosines, and apply both laws to surveying and navigation problems — all in one offline HTML page with zero dependencies.
 
-**Version 1.0.0** · [Live demo](https://somphol.github.io/khan-trig-unit3-non-right-triangles-studio/) · MIT · No build step
+**Version 1.0.1** · [Live demo](https://somphol.github.io/khan-trig-unit3-non-right-triangles-studio/) · MIT · No build step
 
 ![Screenshot of the Law of Sines SSA module](assets/hero.jpg)
 
@@ -39,6 +39,34 @@ python3 -m http.server 8080
 
 Open <http://localhost:8080>. Opening `index.html` directly also works.
 
+## Documentation
+
+| Document | Purpose |
+|----------|---------|
+| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | State, SSA math, triangle constructors, solver, step animation, extension recipes |
+| [docs/DESIGN.md](docs/DESIGN.md) | Pedagogy, colour matrix, Thai glossary, interaction decisions |
+| [docs/TESTING.md](docs/TESTING.md) | Automated checks, verified matrix, manual regression list |
+| [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) | GitHub Pages setup, verification, rollback, custom domain |
+| [docs/ACCESSIBILITY.md](docs/ACCESSIBILITY.md) | WCAG target, implemented features, known gaps |
+| [docs/RELEASE.md](docs/RELEASE.md) | Versioning, release checklist, hotfix and rollback |
+| [CONTRIBUTING.md](CONTRIBUTING.md) | Ground rules, local setup, PR expectations |
+| [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) | Contributor Covenant 2.1 |
+| [SECURITY.md](SECURITY.md) | Supported versions, private reporting, scope |
+| [SUPPORT.md](SUPPORT.md) | Common fixes and where to ask |
+| [ROADMAP.md](ROADMAP.md) | Shipped work, candidates, non-goals |
+| [CHANGELOG.md](CHANGELOG.md) | Release history |
+| [state.json](state.json) | Build record: time, tokens and credits |
+| [AGENTS.md](AGENTS.md) | Operating notes for the next developer or agent |
+
+## Quality gates
+
+```bash
+node --check script.js      # JavaScript syntax
+node scripts/check.mjs      # files, ids, tabs, i18n parity, colours, links, state
+```
+
+Both run in GitHub Actions on every push and pull request. The checker has no dependencies and verifies that the English and Thai dictionaries stay in sync, every referenced DOM id exists, three tabs and panels agree, local assets resolve, and runtime code contains no network APIs.
+
 ## How to use it
 
 1. **Law of Sines** — drag the sliders. Watch the case badge, `sin B`, and the one or two solution rows. Try `a=3, b=10, A=30°` for no triangle, then `a=10, b=10, A=30°` for one.
@@ -48,12 +76,15 @@ Open <http://localhost:8080>. Opening `index.html` directly also works.
 ## Project structure
 
 ```
-index.html   HUD, three panels, sliders, practice form and bilingual hooks
-style.css    Palette, layout, canvas cards, steps, badges and responsive rules
-script.js    State, i18n, SSA geometry, Law of Cosines solver, problem engine, export
-state.json   Build record: elapsed time, token usage, credits
-AGENTS.md    Operating notes for the next developer or agent
-assets/      Documentation screenshot only
+index.html                 HUD, three panels, sliders, practice form and bilingual hooks
+style.css                  Palette, layout, canvas cards, steps, badges and responsive rules
+script.js                  State, i18n, SSA geometry, Law of Cosines solver, practice, export
+scripts/check.mjs          Dependency-free static release checks
+docs/                      Architecture, design, testing, deployment, a11y, release
+.github/                   CI, issue templates, PR template, CODEOWNERS
+state.json                 Build record: elapsed time, token usage, credits
+AGENTS.md                  Operating notes for the next developer or agent
+assets/hero.jpg            Documentation screenshot only
 ```
 
 ## Data and privacy
@@ -63,6 +94,10 @@ Everything stays in the browser. The only storage is `localStorage["khanTrigUnit
 ## Verification
 
 Tested in headless Chrome 156 on macOS with zero console errors: both SSA solutions, the zero- and one-triangle cases, SAS and SSS solving, the SSS triangle-inequality warning, all three practice modes, correct-answer scoring, animated step reveal, EN ⇄ TH switching, reload persistence, JSON export, and a 390 px mobile viewport with no horizontal overflow.
+
+## Contributing
+
+Issues and pull requests are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) and keep the project static, offline and bilingual. Report vulnerabilities privately per [SECURITY.md](SECURITY.md).
 
 ## Credits
 
