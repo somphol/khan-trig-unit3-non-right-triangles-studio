@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#070b16" />
+<title>Khan Trig Companion · Unit 3 Non-Right Triangles Studio</title>
+<meta name="description" content="An interactive, bilingual companion for Khan Academy Trigonometry Unit 3: the Law of Sines, the ambiguous SSA case, the Law of Cosines and surveying practice." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23070b16'/%3E%3Cpath d='M12 50 L52 50 L34 14 Z' fill='none' stroke='%2300E5FF' stroke-width='4' stroke-linejoin='round'/%3E%3Cpath d='M34 14 L34 34' stroke='%23FF5722' stroke-width='3' stroke-dasharray='4 4'/%3E%3Ccircle cx='34' cy='34' r='4' fill='%23FFD600'/%3E%3C/svg%3E" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="aurora" aria-hidden="true"></div>
+
+<div class="app">
+  <header class="hud">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 64 64" width="44" height="44" role="img" aria-label="Non-right triangle">
+          <path d="M12 50 L52 50 L34 14 Z" fill="none" stroke="var(--c-side)" stroke-width="3.5" stroke-linejoin="round" />
+          <path d="M34 14 L34 38" stroke="var(--a-side)" stroke-width="2.5" stroke-dasharray="4 4" />
+          <circle cx="34" cy="38" r="3.5" fill="var(--theta)" />
+        </svg>
+      </span>
+      <div class="brand-text">
+        <h1 data-i18n="appTitle">Khan Trig Companion</h1>
+        <p><span data-i18n="unitLabel">Unit 3</span> · <span data-i18n="appSubtitle">Non-Right Triangles Studio</span></p>
+      </div>
+    </div>
+
+    <div class="hud-stats" aria-label="Progress summary">
+      <div class="stat">
+        <span class="stat-label" data-i18n="streak">Streak</span>
+        <strong id="streakValue">0</strong>
+      </div>
+      <div class="stat">
+        <span class="stat-label" data-i18n="best">Best</span>
+        <strong id="bestValue">0</strong>
+      </div>
+      <div class="stat">
+        <span class="stat-label" data-i18n="mastery">Mastery</span>
+        <strong id="masteryValue">0%</strong>
+      </div>
+    </div>
+
+    <div class="hud-actions">
+      <button id="langToggle" class="btn btn-ghost" type="button" aria-label="Switch language between English and Thai" title="EN / TH">
+        <span aria-hidden="true">🌐</span>
+        <span id="langLabel">EN ⇄ TH</span>
+      </button>
+      <button id="exportBtn" class="btn btn-primary" type="button" data-i18n-title="exportTitle" title="Download your saved progress">
+        <span aria-hidden="true">💾</span>
+        <span data-i18n="export">Export Progress JSON</span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Learning modules">
+    <button class="tab is-active" role="tab" aria-selected="true" aria-controls="panel-sines" id="tab-sines" data-module="sines" type="button">
+      <span class="tab-index">01</span>
+      <span class="tab-label" data-i18n="navSines">Law of Sines &amp; SSA</span>
+      <span class="tab-check" aria-hidden="true">✓</span>
+    </button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="panel-cosines" id="tab-cosines" data-module="cosines" type="button" tabindex="-1">
+      <span class="tab-index">02</span>
+      <span class="tab-label" data-i18n="navCosines">Law of Cosines</span>
+      <span class="tab-check" aria-hidden="true">✓</span>
+    </button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="panel-practice" id="tab-practice" data-module="practice" type="button" tabindex="-1">
+      <span class="tab-index">03</span>
+      <span class="tab-label" data-i18n="navPractice">Surveying Practice</span>
+      <span class="tab-check" aria-hidden="true">✓</span>
+    </button>
+  </nav>
+
+  <main>
+    <!-- ============================= MODULE 1 ============================= -->
+    <section class="panel is-active" id="panel-sines" role="tabpanel" aria-labelledby="tab-sines">
+      <div class="panel-head">
+        <div>
+          <h2 data-i18n="s.title">Law of Sines &amp; the Ambiguous Case</h2>
+          <p class="lede" data-i18n="s.desc">Given two sides and a non-included angle (SSA), the third side can swing into zero, one or two triangles. Build the case and watch it happen.</p>
+        </div>
+        <div class="pill" data-i18n="s.goal">Goal: see why SSA can be ambiguous</div>
+      </div>
+
+      <div class="grid sines-grid">
+        <article class="card canvas-card">
+          <div class="canvas-head">
+            <div class="legend" aria-hidden="true">
+              <span class="legend-item"><i class="dot dot-c"></i><span data-i18n="s.legendC">Triangle 1 (solid)</span></span>
+              <span class="legend-item"><i class="dot dot-a"></i><span data-i18n="s.legendA">Triangle 2 (dotted)</span></span>
+              <span class="legend-item"><i class="dot dot-b"></i><span data-i18n="s.legendB">Fixed side b</span></span>
+              <span class="legend-item"><i class="dot dot-theta"></i><span data-i18n="s.legendTheta">Angle A / ray</span></span>
+            </div>
+          </div>
+          <div class="canvas-wrap canvas-wrap-sines">
+            <canvas id="sinesCanvas" role="img" aria-label="SSA triangle construction. The base b and angle A are fixed; the circle shows every point at distance a from C, producing zero, one or two triangles."></canvas>
+            <div class="case-float" id="caseFloat">2 triangles</div>
+            <p class="canvas-hint" data-i18n="s.hint">Drag the sliders to swing side a around C</p>
+          </div>
+        </article>
+
+        <aside class="stack">
+          <article class="card controls-card">
+            <div class="control">
+              <div class="control-head">
+                <label for="aS"><span class="side-a">a</span> · <span data-i18n="s.sideA">Side a (opposite A)</span></label>
+                <output id="aSOut" class="control-out" for="aS">7.0</output>
+              </div>
+              <input id="aS" class="range range-a" type="range" min="1" max="15" step="0.1" value="7" />
+              <div class="range-scale"><span>1</span><span>8</span><span>15</span></div>
+            </div>
+
+            <div class="control">
+              <div class="control-head">
+                <label for="bS"><span class="side-b">b</span> · <span data-i18n="s.sideB">Side b (fixed base)</span></label>
+                <output id="bSOut" class="control-out" for="bS">10.0</output>
+              </div>
+              <input id="bS" class="range range-b" type="range" min="1" max="15" step="0.1" value="10" />
+              <div class="range-scale"><span>1</span><span>8</span><span>15</span></div>
+            </div>
+
+            <div class="control">
+              <div class="control-head">
+                <label for="AS"><span class="side-theta">A</span> · <span data-i18n="s.angleA">Angle A</span></label>
+                <output id="ASOut" class="control-out" for="AS">30°</output>
+              </div>
+              <input id="AS" class="range range-theta" type="range" min="5" max="175" step="1" value="30" />
+              <div class="range-scale"><span>5°</span><span>90°</span><span>175°</span></div>
+            </div>
+          </article>
+
+          <article class="card verdict-card">
+            <div class="verdict-head">
+              <h3 class="card-title" data-i18n="s.case">The case</h3>
+              <span class="case-badge" id="caseBadge">2</span>
+            </div>
+            <p class="verdict-title" id="caseTitle">Two distinct triangles</p>
+            <p class="micro" id="caseReason">Because sin B &lt; 1 and both B and 180° − B leave a valid angle C.</p>
+            <div class="formula-box">
+              <span class="formula-label" data-i18n="s.formulaLabel">Law of Sines</span>
+              <span class="formula">a / sin A = b / sin B = c / sin C</span>
+            </div>
+            <div class="sinb-line">
+              <span>sin B = b sin A / a</span>
+              <span>=</span>
+              <strong id="sinBValue">0.7143</strong>
+            </div>
+          </article>
+
+          <article class="card solutions-card">
+            <h3 class="card-title" data-i18n="s.solutions">Valid solutions</h3>
+            <div id="solutionsList" class="solutions-list"></div>
+          </article>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============================= MODULE 2 ============================= -->
+    <section class="panel" id="panel-cosines" role="tabpanel" aria-labelledby="tab-cosines" hidden>
+      <div class="panel-head">
+        <div>
+          <h2 data-i18n="c.title">Law of Cosines · SAS &amp; SSS Solver</h2>
+          <p class="lede" data-i18n="c.desc">When the Law of Sines cannot get started, the Law of Cosines handles two sides with an included angle, or three sides.</p>
+        </div>
+        <div class="pill" data-i18n="c.goal">Goal: c² = a² + b² − 2ab cos C</div>
+      </div>
+
+      <div class="grid cosines-grid">
+        <article class="card canvas-card">
+          <div class="canvas-wrap canvas-wrap-cos">
+            <canvas id="cosCanvas" role="img" aria-label="Triangle solved with the Law of Cosines, with labelled sides and angles."></canvas>
+          </div>
+        </article>
+
+        <aside class="stack">
+          <article class="card controls-card">
+            <div class="mode-row" role="group" aria-label="Law of Cosines mode">
+              <button class="mode-btn is-active" type="button" data-cmode="sas">
+                <span aria-hidden="true">📐</span> <span data-i18n="c.modeSas">SAS · two sides + angle</span>
+              </button>
+              <button class="mode-btn" type="button" data-cmode="sss">
+                <span aria-hidden="true">📏</span> <span data-i18n="c.modeSss">SSS · three sides</span>
+              </button>
+            </div>
+
+            <div class="control">
+              <div class="control-head">
+                <label for="cosA"><span class="side-a">a</span> · <span data-i18n="c.sideA">Side a</span></label>
+                <output id="cosAOut" class="control-out" for="cosA">8.0</output>
+              </div>
+              <input id="cosA" class="range range-a" type="range" min="1" max="15" step="0.1" value="8" />
+            </div>
+
+            <div class="control">
+              <div class="control-head">
+                <label for="cosB"><span class="side-b">b</span> · <span data-i18n="c.sideB">Side b</span></label>
+                <output id="cosBOut" class="control-out" for="cosB">6.0</output>
+              </div>
+              <input id="cosB" class="range range-b" type="range" min="1" max="15" step="0.1" value="6" />
+            </div>
+
+            <div class="control">
+              <div class="control-head">
+                <label for="cosThird"><span class="side-c" id="thirdSymbol">C</span> · <span id="thirdLabel">Included angle C</span></label>
+                <output id="cosThirdOut" class="control-out" for="cosThird">50°</output>
+              </div>
+              <input id="cosThird" class="range range-theta" type="range" min="5" max="175" step="1" value="50" />
+            </div>
+          </article>
+
+          <article class="card results-card">
+            <h3 class="card-title" data-i18n="c.results">Solved triangle</h3>
+            <div class="result-grid" id="resultGrid">
+              <div class="result-cell"><span>c</span><strong id="resC">6.19</strong></div>
+              <div class="result-cell"><span>A</span><strong id="resA">83.3°</strong></div>
+              <div class="result-cell"><span>B</span><strong id="resB">46.7°</strong></div>
+              <div class="result-cell"><span>C</span><strong id="resCangle">50.0°</strong></div>
+              <div class="result-cell wide"><span data-i18n="c.area">Area</span><strong id="resArea">18.38</strong></div>
+            </div>
+            <p class="micro" id="cosWarning" hidden></p>
+          </article>
+        </aside>
+      </div>
+
+      <article class="card steps-card">
+        <div class="card-heading">
+          <h3 class="card-title" data-i18n="c.stepsTitle">Live algebraic substitution</h3>
+          <span class="micro" data-i18n="c.live">updates as you drag</span>
+        </div>
+        <ol class="steps live-steps" id="cosSteps"></ol>
+      </article>
+    </section>
+
+    <!-- ============================= MODULE 3 ============================= -->
+    <section class="panel" id="panel-practice" role="tabpanel" aria-labelledby="tab-practice" hidden>
+      <div class="panel-head">
+        <div>
+          <h2 data-i18n="q.title">Khan Practice Sandbox &amp; Navigation Problems</h2>
+          <p class="lede" data-i18n="q.desc">Apply the Laws of Sines and Cosines to distances across lakes, landmark ranges and ship tracks.</p>
+        </div>
+        <div class="pill" data-i18n="q.goal">Goal: triangulation in the real world</div>
+      </div>
+
+      <div class="grid practice-grid">
+        <article class="card practice-card">
+          <div class="mode-row" role="group" aria-label="Problem mode">
+            <button class="mode-btn is-active" type="button" data-pmode="sines">
+              <span aria-hidden="true">📐</span> <span data-i18n="q.modeSines">Law of Sines</span>
+            </button>
+            <button class="mode-btn" type="button" data-pmode="cosines">
+              <span aria-hidden="true">📏</span> <span data-i18n="q.modeCosines">Law of Cosines</span>
+            </button>
+            <button class="mode-btn" type="button" data-pmode="survey">
+              <span aria-hidden="true">🗺️</span> <span data-i18n="q.modeSurvey">Surveying</span>
+            </button>
+          </div>
+
+          <div class="problem-head">
+            <span class="problem-tag" id="problemTag">LAW OF SINES</span>
+            <button class="btn btn-ghost btn-small" id="newProblemBtn" type="button">🎲 <span data-i18n="q.new">New problem</span></button>
+          </div>
+
+          <p class="problem-text" id="problemText">Loading…</p>
+          <p class="problem-question" id="problemQuestion"></p>
+
+          <form class="answer-row" id="answerForm" autocomplete="off">
+            <label class="sr-only" for="answerInput" data-i18n="q.answerLabel">Your answer</label>
+            <input id="answerInput" class="answer-input" type="text" inputmode="decimal" data-i18n-placeholder="q.placeholder" placeholder="e.g. 42.7" />
+            <button class="btn btn-primary" id="checkBtn" type="submit" data-i18n="q.check">Check Answer</button>
+          </form>
+          <p class="answer-hint micro" id="answerHint" data-i18n="q.answerHint">Round lengths and angles sensibly; a small tolerance is allowed.</p>
+
+          <div class="feedback" id="feedback" role="status" aria-live="polite" hidden></div>
+
+          <div class="solution-block">
+            <button class="btn btn-ghost" id="stepsBtn" type="button">
+              💡 <span data-i18n="q.showSteps">Show Step-by-Step Visual Solution</span>
+            </button>
+            <ol class="steps" id="stepsList" aria-live="polite"></ol>
+          </div>
+        </article>
+
+        <aside class="stack">
+          <article class="card map-card">
+            <h3 class="card-title" data-i18n="q.map">Triangulation map</h3>
+            <div class="canvas-wrap canvas-wrap-map">
+              <canvas id="quizCanvas" role="img" aria-label="Map grid showing the triangle for the current problem; the solution steps highlight the relevant side or angle."></canvas>
+            </div>
+          </article>
+
+          <article class="card score-card">
+            <h3 class="card-title" data-i18n="q.progress">Your progress</h3>
+            <div class="score-grid">
+              <div class="score-cell">
+                <span data-i18n="streak">Streak</span>
+                <strong id="quizStreak">0</strong>
+              </div>
+              <div class="score-cell">
+                <span data-i18n="best">Best</span>
+                <strong id="quizBest">0</strong>
+              </div>
+              <div class="score-cell">
+                <span data-i18n="q.correct">Correct</span>
+                <strong id="quizCorrect">0</strong>
+              </div>
+            </div>
+            <div class="mastery-block">
+              <div class="mastery-head">
+                <span data-i18n="mastery">Mastery</span>
+                <strong id="quizMastery">0%</strong>
+              </div>
+              <div class="mastery-track"><div class="mastery-fill" id="masteryFill" style="width:0%"></div></div>
+              <p class="micro" data-i18n="q.masteryHint">15 correct answers unlock Unit 3 mastery.</p>
+            </div>
+          </article>
+
+          <article class="card badges-card">
+            <h3 class="card-title" data-i18n="q.badges">Mastery badges</h3>
+            <div class="badge-grid" id="badgeGrid"></div>
+          </article>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span>△ <span data-i18n="footerBuilt">Built for active learning</span></span>
+    <span class="dot-sep">·</span>
+    <span id="footCredit">OpenCode × deepseek-v4.1-flash</span>
+  </footer>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<noscript><p class="noscript">This studio needs JavaScript enabled. / ห้องเรียนนี้ต้องเปิดใช้งาน JavaScript</p></noscript>
+
+<script src="script.js"></script>
+</body>
+</html>
