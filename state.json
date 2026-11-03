@@ -1,0 +1,83 @@
+{
+  "project": "Khan Trig Companion: Unit 3 Non-Right Triangles Studio",
+  "session": {
+    "id": "ses_e60a2ea01ffewQMjVLNWKAti2n",
+    "startedAt": "2026-11-03T04:15:11Z",
+    "capturedAt": "2026-11-03T04:25:01Z",
+    "elapsedSeconds": 590,
+    "elapsed": "9m 50s",
+    "note": "Wall-clock build time from the first Unit 3 tool call to this capture. The app, the GitHub repository and the first GitHub Pages deployment were complete before capture; only the state commit and release metadata followed."
+  },
+  "model": {
+    "name": "DeepSeek V4.1 Flash",
+    "id": "deepseek-v4.1-flash",
+    "provider": "opencode-go"
+  },
+  "usage": {
+    "basis": "Delta from the Unit 3 start snapshot of the shared OpenCode session (2026-11-03T04:15:11Z), not cumulative Unit 1/2 usage.",
+    "inputTokens": 96116,
+    "outputTokens": 48360,
+    "reasoningTokens": 31786,
+    "cacheReadTokens": 12334592,
+    "cacheWriteTokens": 0,
+    "totalTokens": 12510854,
+    "costUSD": 0,
+    "note": "Read from the OpenCode session database. totalTokens is the sum of all five counters, including cache reads; cache reads are repeated prompt context and dominate the figure. costUSD is 0 on the flat-rate plan."
+  },
+  "artifacts": {
+    "sourceFiles": [
+      "index.html",
+      "style.css",
+      "script.js"
+    ],
+    "lineCounts": {
+      "index.html": 341,
+      "style.css": 757,
+      "script.js": 1491
+    },
+    "supportingFiles": [
+      "README.md",
+      "AGENTS.md",
+      "CHANGELOG.md",
+      "LICENSE",
+      "state.json",
+      ".nojekyll",
+      ".gitignore",
+      "assets/hero.jpg"
+    ]
+  },
+  "verification": {
+    "method": "Headless Chrome 156 over the DevTools Protocol, plus node --check",
+    "checks": [
+      "Default SSA: two triangles, sin B = 0.7143, B = 45.6°/134.4°, c = 13.56/3.76",
+      "a = 3, b = 10, A = 30° reports no triangle with the correct explanation",
+      "a = 10, b = 10, A = 30° reports exactly one triangle",
+      "Case badge, floating badge and solution rows update with the sliders",
+      "SAS with a = 8, b = 6, C = 50° solves c = 6.19, A = 82.0°, B = 48.0°",
+      "SSS with a = 8, b = 6, c = 9 solves C = 78.6°",
+      "Invalid SSS sides show the triangle-inequality warning and empty result",
+      "Six live substitution steps render and update in the Law of Cosines drawer",
+      "Law of Sines practice answer 102.0 m accepted; streak and badge update",
+      "Animated solution reveals three steps and advances the map step marker",
+      "Law of Cosines and four surveying templates generate valid prompts",
+      "EN ⇄ TH switch updates tabs, question, steps and case explanation",
+      "Reload restores language, streak, correct count and all three completed tabs",
+      "Export produces an application/json Blob",
+      "390 px mobile viewport: no horizontal overflow on any module"
+    ],
+    "consoleErrors": 0
+  },
+  "deployment": {
+    "repository": "https://github.com/somphol/khan-trig-unit3-non-right-triangles-studio",
+    "pages": "https://somphol.github.io/khan-trig-unit3-non-right-triangles-studio/",
+    "host": "GitHub Pages",
+    "branch": "main",
+    "path": "/"
+  },
+  "credits": {
+    "tool": "OpenCode",
+    "toolURL": "https://opencode.ai",
+    "model": "DeepSeek V4.1 Flash",
+    "modelID": "opencode-go/deepseek-v4.1-flash"
+  }
+}
